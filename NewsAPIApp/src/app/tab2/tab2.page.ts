@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-tab2',
@@ -7,6 +8,16 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  articles;
 
+  constructor(private apiService: ApiService){}
+
+  ionViewDidEnter(){
+
+    this.apiService.getSportsNews().subscribe((data)=>{
+      console.log(data);
+      this.articles = data['articles'];
+    });
+  }
 }
+
